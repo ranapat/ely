@@ -9,6 +9,22 @@ ely - Emit Light and Yell
 ```javascript
 import { ely } from 'ely';
 
+const object = {
+  a: 'value of a',
+  b: 'value of b'
+};
+
+const emitter = ely.map(object);
+emitter.on('a', (_new, _old) => {
+  console.log(_new, _old);
+});
+emitter.on('*', (_new, _old, key) => {
+console.log(_new, _old, key);
+});
+
+object.a = 'new value of a';
+object.a = 'new value of b';
+
 ```
 
 #### More examples
