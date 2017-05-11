@@ -1,0 +1,35 @@
+{
+  "name": "ely",
+  "version": "1.0.0",
+  "description": "Emit Light and Yell",
+  "keywords": "ely emit events",
+  "main": "lib/index.js",
+  "dependencies": {
+    "events": "^1.1.1"
+  },
+  "devDependencies": {
+    "babel": "^6.23.0",
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.24.1",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "chai": "^3.5.0",
+    "chai-spies": "^0.7.1",
+    "mocha": "^3.2.0"
+  },
+  "scripts": {
+    "test": "node_modules/mocha/bin/mocha --compilers js:babel-register --require babel-polyfill --recursive tests",
+    "tdd": "node_modules/mocha/bin/mocha --compilers js:babel-register --require babel-polyfill --recursive tests --watch src/ tests/",
+    "prepublish": "node_modules/babel-cli/bin/babel.js src --out-dir lib",
+    "watch": "node_modules/babel-cli/bin/babel.js -w src -d lib",
+    "serve": "node_modules/babel-cli/bin/babel.js -w src -d lib | nodemon --watch lib"
+  },
+  "author": "ranapat@gmail.com",
+  "license": "Unlicense",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ranapat/ely.git"
+  }
+}

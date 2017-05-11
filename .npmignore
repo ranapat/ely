@@ -1,0 +1,8 @@
+/src/
+/tests/
+/.babelrc
+
+# Emacs
+*.*~
+
+.keepme
