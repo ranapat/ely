@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [1.0.3] - 2017-05-11
+### Changes
+- normalize changelog - 2017-05-11
+
 ## [1.0.2] - 2017-05-10
 - fixed the release script
 
