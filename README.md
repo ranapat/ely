@@ -19,7 +19,7 @@ emitter.on('a', (_new, _old) => {
   console.log(_new, _old);
 });
 emitter.on('*', (_new, _old, key) => {
-console.log(_new, _old, key);
+  console.log(_new, _old, key);
 });
 
 object.a = 'new value of a';
