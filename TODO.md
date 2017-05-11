@@ -1,7 +1,7 @@
 # Todo list
 
 ### Important
-- [] something
+- [ ] something
 
 ### Other:
 
