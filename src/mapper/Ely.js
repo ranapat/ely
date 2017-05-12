@@ -1,6 +1,7 @@
 import EventEmitter from 'events';
 
 import Patterns from './Patterns';
+import StorageMap from './StorageMap';
 
 class Ely {
   static mapIn(object, patterns = undefined) {
@@ -40,14 +41,15 @@ class Ely {
       });
     }
 
-    const elyMapped = object['__ely__map__'] !== undefined ? object['__ely__map__'] : {};
-    const elyMappedKeys = Object.keys(elyMapped);
-    elyMappedKeys.push('__ely__map__');
+    const elyMapKey = Ely.findElyMapKey(object);
+    const elyMap = object[elyMapKey] !== undefined ? object[elyMapKey] : new StorageMap();
+    const elyMapKeys = Object.keys(elyMap.map);
+    elyMapKeys.push(elyMapKey);
 
     const emitall = patterns !== undefined ? patterns.emitall : false;
 
     Object.keys(object).forEach((key) => {
-      if (elyMappedKeys.indexOf(key) === -1) {
+      if (elyMapKeys.indexOf(key) === -1) {
         const descriptor = Object.getOwnPropertyDescriptor(object, key);
         if (descriptor.writable) {
           const valueType = typeof descriptor.value;
@@ -58,11 +60,10 @@ class Ely {
               patterns === undefined
                 || (Ely.match(key, patterns.accept) && Ely.notmatch(key, patterns.skip))
             ) {
-              const privateKey = Ely.findEmptyKey(object, key, '_');
+              const privateKey = Ely.findEmptyKey(elyMap.map, key, '_');
               const value = object[key];
 
-              delete object[key];
-              Object.defineProperty(object, privateKey, {
+              Object.defineProperty(elyMap.values, privateKey, {
                 configurable: true,
                 enumerable: true,
                 writable: true,
@@ -72,29 +73,29 @@ class Ely {
                 configurable: true,
                 enumerable: true,
                 set: (value) => {
-                  emitter.emit(key, value, object[privateKey]);
+                  emitter.emit(key, value, elyMap.values[privateKey]);
                   if (emitall) {
-                    emitter.emit('*', value, object[privateKey], key);
+                    emitter.emit('*', value, elyMap.values[privateKey], key);
                   }
-                  object[privateKey] = value;
+                  elyMap.values[privateKey] = value;
                 },
                 get: () => {
-                  return object[privateKey];
+                  return elyMap.values[privateKey];
                 }
               });
 
-              elyMapped[privateKey] = key;
+              elyMap.map[key] = privateKey;
             }
           }
         }
       }
     });
 
-    Object.defineProperty(object, '__ely__map__', {
+    Object.defineProperty(object, elyMapKey, {
       configurable: true,
       enumerable: false,
       writable: true,
-      value: elyMapped
+      value: elyMap
     });
 
     return emitter;
@@ -108,8 +109,22 @@ class Ely {
     );
   }
 
+  static findElyMapKey(object) {
+    let name = '__ely_map__';
+    while (object[name] !== undefined && !(object[name] instanceof StorageMap)) {
+      name = '_' + name + '_';
+    }
+    if (object[name] === undefined) {
+      return name;
+    } else if (object[name] instanceof StorageMap) {
+      return name;
+    } else {
+      return undefined;
+    }
+  }
+
   static findEmptyKey(object, key, prefix) {
-    let name = prefix + key;
+    let name = key;
     while (object[name] !== undefined) {
       name = prefix + name;
     }

@@ -262,4 +262,28 @@ describe('Test Ely', () => {
     expect(onStar).to.have.been.called().once;
   });
 
+  it('to find free ely map (1)', () => {
+    const object = {
+      a: 'value of a',
+      b: 'value of b'
+    };
+
+    ely.map(object);
+
+    expect(object.__ely_map__).not.to.equal(undefined);
+  });
+
+  it('to find free ely map (1)', () => {
+    const object = {
+      a: 'value of a',
+      b: 'value of b',
+      __ely_map__: 'this is ely map'
+    };
+
+    ely.map(object);
+
+    expect(object.__ely_map__).to.equal('this is ely map');
+    expect(object.___ely_map___).not.to.equal(undefined);
+  });
+
 });
