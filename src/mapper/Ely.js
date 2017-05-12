@@ -101,6 +101,27 @@ class Ely {
     return emitter;
   }
 
+  static unmap(object) {
+    const elyMapKey = Ely.findElyMapKey(object);
+    const elyMap = object[elyMapKey];
+
+    if (elyMap !== undefined) {
+      Object.keys(elyMap.map).forEach((key) => {
+        Object.defineProperty(object, key, {
+          configurable: true,
+          enumerable: true,
+          writable: true,
+          value: elyMap.values[elyMap.map[key]]
+        });
+      });
+
+      delete object[elyMapKey];
+      if (object['ely'] !== undefined && object['ely'] instanceof EventEmitter) {
+        delete object['ely'];
+      }
+    }
+  }
+
   static get defaultPatterns() {
     return new Patterns(
       undefined,

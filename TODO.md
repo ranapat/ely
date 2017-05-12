@@ -1,7 +1,7 @@
 # Todo list
 
 ### Important
-- [ ] unmap
+- [x] unmap
 
 ### Other:
 

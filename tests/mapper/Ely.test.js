@@ -273,7 +273,7 @@ describe('Test Ely', () => {
     expect(object.__ely_map__).not.to.equal(undefined);
   });
 
-  it('to find free ely map (1)', () => {
+  it('to find free ely map (2)', () => {
     const object = {
       a: 'value of a',
       b: 'value of b',
@@ -284,6 +284,32 @@ describe('Test Ely', () => {
 
     expect(object.__ely_map__).to.equal('this is ely map');
     expect(object.___ely_map___).not.to.equal(undefined);
+  });
+
+  it('to unmap', () => {
+    const object = {
+      a: 'value of a',
+      b: 'value of b'
+    };
+
+    ely.map(object);
+
+    expect(object.__ely_map__).not.to.equal(undefined);
+    expect(object.ely).not.to.equal(undefined);
+
+    object.a = 'new value of a';
+    object.b = 'new value of b';
+
+    expect(object.a).to.equal('new value of a');
+    expect(object.b).to.equal('new value of b');
+
+    ely.unmap(object);
+
+    expect(object.__ely_map__).to.equal(undefined);
+    expect(object.ely).to.equal(undefined);
+
+    expect(object.a).to.equal('new value of a');
+    expect(object.b).to.equal('new value of b');
   });
 
 });
