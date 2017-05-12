@@ -23,7 +23,7 @@ emitter.on('*', (_new, _old, key) => {
 });
 
 object.a = 'new value of a';
-object.a = 'new value of b';
+object.b = 'new value of b';
 
 ```
 
