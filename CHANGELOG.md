@@ -1,6 +1,13 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [1.0.4] - 2017-05-12
+### Changes
+- unmap - 2017-05-12
+- fix readme - 2017-05-12
+- add unmap to todo - 2017-05-12
+- move all private variables into storagemap - 2017-05-12
+
 ## [1.0.3] - 2017-05-11
 ### Changes
 - normalize changelog - 2017-05-11
