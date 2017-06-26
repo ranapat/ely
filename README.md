@@ -15,9 +15,9 @@ npm install ely
 
 #### Use standalone
 ```html
-<script src="https://cdn.jsdelivr.net/npm/tasksf/standalone/ely.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/ely/standalone/ely.js"></script>
 or
-<script src="https://cdn.jsdelivr.net/npm/tasksf/standalone/ely.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/ely/standalone/ely.min.js"></script>
 ```
 
 ### Access the library:
@@ -34,7 +34,7 @@ const ely = require('ely');
 
 #### Standalone
 ```html
-<script src="https://cdn.jsdelivr.net/npm/tasksf/standalone/ely.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/ely/standalone/ely.min.js"></script>
 <script>
 // global ely variable exists
 </script>
