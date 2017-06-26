@@ -3,15 +3,51 @@ import EventEmitter from 'events';
 import Patterns from './Patterns';
 import StorageMap from './StorageMap';
 
+/**
+ * Ely
+ *
+ * Maps and unmaps object properties to emitter.
+ * Every further change of properties will emit the changes.
+ *
+ * Can keep the emitter inside or outside of the original object.
+ */
 class Ely {
+  /**
+   * Maps and keeps emitter inside the object
+   *
+   * Shortkey for map(object, true, patterns)
+   *
+   * @param {Object} object object with properties
+   * @param {Patterns} patterns patterns of matching
+   * @return {EventEmitter} event emitter
+   */
   static mapIn(object, patterns = undefined) {
     return Ely.map(object, true, patterns);
   }
 
+  /**
+   * Maps and keeps emitter outside the object
+   *
+   * Shortkey for map(object, false, patterns)
+   *
+   * @param {Object} object object with properties
+   * @param {Patterns} patterns patterns of matching
+   * @return {EventEmitter} event emitter
+   */
   static mapOut(object, patterns = undefined) {
     return Ely.map(object, false, patterns);
   }
 
+  /**
+   * Maps object properties
+   *
+   * Main map method
+   *
+   * @param {Object} object object with properties
+   * @param {boolean} embed embed the emitter or not
+   * @param {Patterns} patterns patterns of matching
+   * @return {EventEmitter} event emitter
+   */
   static map(object, embed = true, patterns = undefined) {
     const defaultPatterns = Ely.defaultPatterns;
     patterns = patterns === undefined ? defaultPatterns : patterns;
@@ -101,6 +137,11 @@ class Ely {
     return emitter;
   }
 
+  /**
+   * Unmaps object properties
+   *
+   * @param {Object} object object with properties
+   */
   static unmap(object) {
     const elyMapKey = Ely.findElyMapKey(object);
     const elyMap = object[elyMapKey];
@@ -122,6 +163,11 @@ class Ely {
     }
   }
 
+  /**
+   * Gets default pattern
+   *
+   * @return {Patterns} default patterns
+   */
   static get defaultPatterns() {
     return new Patterns(
       undefined,
@@ -130,6 +176,16 @@ class Ely {
     );
   }
 
+  /**
+   * Finds the ely map key
+   *
+   * Checks if default ely map key already exists and replaces
+   * it with unique one.
+   *
+   * @param {Object} object object with properties
+   * @return {string}
+   * @protected
+   */
   static findElyMapKey(object) {
     let name = '__ely_map__';
     while (object[name] !== undefined && !(object[name] instanceof StorageMap)) {
@@ -144,6 +200,17 @@ class Ely {
     }
   }
 
+  /**
+   * Finds empty key
+   *
+   * Checks if key overlap inside object. Creates unique one if needed.
+   *
+   * @param {Object} object object with properties
+   * @param {string} key key to be checked
+   * @param {string} prefix prefix to be applied
+   * @return {string} unique key
+   * @protected
+   */
   static findEmptyKey(object, key, prefix) {
     let name = key;
     while (object[name] !== undefined) {
@@ -152,6 +219,16 @@ class Ely {
     return name;
   }
 
+  /**
+   * Matches key to pattern
+   *
+   * Checks if key matches a given pattern
+   *
+   * @param {string} key key to be checked
+   * @param {Patterns} patterns patterns to check against
+   * @return {boolean} match result
+   * @protected
+   */
   static match(key, patterns) {
     if (patterns === undefined) {
       return true;
@@ -181,6 +258,16 @@ class Ely {
     }
   }
 
+  /**
+   * No Matches key to pattern
+   *
+   * Checks if key does not match a given pattern
+   *
+   * @param {string} key key to be checked
+   * @param {Patterns} patterns patterns to check against
+   * @return {boolean} match result
+   * @protected
+   */
   static notmatch(key, patterns) {
     if (patterns === undefined) {
       return true;
