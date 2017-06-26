@@ -1,8 +1,9 @@
 # Todo list
 
 ### Important
-- [x] unmap
+- [ ] tests
 
 ### Other:
 
+- [ ] improve documentation
 - [ ] more examples

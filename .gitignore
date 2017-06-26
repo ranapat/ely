@@ -1,11 +1,11 @@
 /lib/
 /node_modules/
 /npm-debug.log
+/coverage/
+/standalone/
+/examples/bin/
 
-# Release
-package.json-e
-changelog-s
-CHANGELOG.md-e
+.coveralls.yml
 
 # Emacs
 *.*~

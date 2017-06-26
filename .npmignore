@@ -1,8 +1,14 @@
 /src/
 /tests/
-/.babelrc
+/coverage/
+/scripts/
+/examples/bin/
 
-# Emacs
+/.babelrc
+/.coveralls.yml
+/.travis.yml
+
+.npmignore
 *.*~
 
 .keepme
