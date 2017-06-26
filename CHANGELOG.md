@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [1.0.5] - 2017-06-26
+### Changes
+- rebuild documentation
+- update dockblocks
+- update environment
+
 ## [1.0.4] - 2017-05-12
 ### Changes
 - unmap - 2017-05-12
