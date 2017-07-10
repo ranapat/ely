@@ -1,4 +1,4 @@
-# ely [![npm version](https://img.shields.io/npm/v/ely.svg?style=flat)](https://www.npmjs.com/package/ely) [![Build Status](https://img.shields.io/travis/ranapat/ely/master.svg?style=flat)](https://travis-ci.org/ranapat/ely)  [![Coverage Status](https://coveralls.io/repos/ranapat/ely/badge.svg?branch=master)](https://coveralls.io/r/ranapat/ely?branch=master)
+# ely [![npm version](https://img.shields.io/npm/v/ely.svg?style=flat)](https://www.npmjs.com/package/ely) [![Build Status](https://img.shields.io/travis/ranapat/ely/master.svg?style=flat)](https://travis-ci.org/ranapat/ely)  [![Coverage Status](https://coveralls.io/repos/ranapat/ely/badge.svg?branch=master)](https://coveralls.io/r/ranapat/ely?branch=master) [![devDependencies Status](https://david-dm.org/ranapat/ely/dev-status.svg)](https://david-dm.org/ranapat/ely?type=dev)
 
 ely - Emit Light and Yell
 
