@@ -1,6 +1,6 @@
 {
   "name": "ely",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Emit Light and Yell",
   "keywords": "ely emit events",
   "main": "lib/index.js",
