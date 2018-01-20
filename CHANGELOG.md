@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file.
 
 
+## [1.0.11] - 2018-01-20
+update dev versions
+### Changes
+- update dep versions
+- update package lock
+
 ## [1.0.9] - 2018-01-20
 update dependencies
 ### Changes
